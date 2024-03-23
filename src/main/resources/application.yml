@@ -1,0 +1,9 @@
+spring:
+    application:
+        name: BusStation
+    datasource:
+        url: jdbc:postgresql://localhost:5432/bus_station
+        username: user
+        password: 1234
+    jpa:
+        generate-ddl: true
