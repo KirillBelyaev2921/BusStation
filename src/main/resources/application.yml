@@ -7,3 +7,5 @@ spring:
         password: 1234
     jpa:
         generate-ddl: true
+        hibernate:
+            ddl-auto: create-drop
