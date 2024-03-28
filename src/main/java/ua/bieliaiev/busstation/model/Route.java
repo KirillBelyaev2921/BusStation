@@ -18,9 +18,10 @@ public class Route {
 
 	private String routeNumber;
 
-	@OneToMany(mappedBy = "id.route", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "route")
 	private List<RouteStop> routeStops;
 
 	@OneToOne(mappedBy = "route")
 	private Bus bus;
+
 }

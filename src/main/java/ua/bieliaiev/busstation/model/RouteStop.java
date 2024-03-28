@@ -2,26 +2,39 @@ package ua.bieliaiev.busstation.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalTime;
-import java.util.Currency;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "route_stop")
 public class RouteStop {
 
 	@EmbeddedId
-	private RouteStopId id;
+	private RouteStopId id = new RouteStopId();
+
+	@ManyToOne
+	@MapsId("routeId")
+	@JoinColumn(name = "route_id")
+	private Route route;
+
+	@ManyToOne
+	@MapsId("stopId")
+	@JoinColumn(name = "stop_id")
+	private Stop stop;
 
 	private Integer stopIndex;
-	private LocalTime arrival_Time;
-	private LocalTime departureTime;
-	private Currency price;
 
 	@OneToMany(mappedBy = "routeStop")
 	private List<Customer> customers;
+
+	public RouteStop(Route route, Stop stop, Integer stopIndex) {
+		this.route = route;
+		this.stop = stop;
+		this.stopIndex = stopIndex;
+	}
 }
