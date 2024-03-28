@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Bus</title>
+    <title>Buses</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css}"/>
 </head>
 <body>
 <table class="table table-sm table-striped table-bordered table-hover">
@@ -22,7 +23,7 @@
         <td><span th:text="${bus.getBus().getRoute().getRouteNumber()}">Route Number</span></td>
         <td><span th:text="${bus.getDepartureDate()}">Departure Time</span></td>
         <td>
-            <a th:href="@{bus/${bus.id}}" class="btn btn-sm btn-info">
+            <a th:href="@{bus(id=${bus.id})}" class="btn btn-sm btn-info">
                 <i class="bi bi-arrow-right"></i>
             </a>
         </td>

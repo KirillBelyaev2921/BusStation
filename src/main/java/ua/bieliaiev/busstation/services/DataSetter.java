@@ -1,6 +1,7 @@
-package ua.bieliaiev.busstation.configuration;
+package ua.bieliaiev.busstation.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import ua.bieliaiev.busstation.model.*;
 import ua.bieliaiev.busstation.repostitories.*;
 
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @AllArgsConstructor
+@Service
 public class DataSetter {
 	private final RouteRepository routeRepository;
 	private final StopRepository stopRepository;
@@ -19,7 +21,7 @@ public class DataSetter {
 	private final BusDepartureRepository busDepartureRepository;
 	private final BusStopRepository busStopRepository;
 
-	public void setAllData() {
+	public void setTestData() {
 		Route route = setRoute("Route 1");
 
 		List<Stop> stops = setUpStops();
@@ -42,12 +44,14 @@ public class DataSetter {
 	}
 
 	private List<Stop> setUpStops() {
+		Stop station = new Stop("Station");
+		station = stopRepository.save(station);
 		List<Stop> stops = IntStream.range(0, 26)
 				.mapToObj(i -> (char)(i + 'A') + "")
 				.map(Stop::new)
 				.map(stopRepository::save)
 				.collect(Collectors.toList());
-		stops.addFirst(new Stop("Station"));
+		stops.addFirst(station);
 		return stops;
 	}
 

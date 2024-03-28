@@ -17,4 +17,9 @@ public class BusController {
 		model.addAttribute("buses", service.findAllByRouteId(id));
 		return "/buses";
 	}
+	@GetMapping("/bus")
+	public String getBusRoute(@RequestParam("id") int id, Model model) {
+		model.addAttribute("busDeparture", service.findById(id));
+		return "/bus";
+	}
 }
