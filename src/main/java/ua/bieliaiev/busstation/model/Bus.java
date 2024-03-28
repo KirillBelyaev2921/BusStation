@@ -17,8 +17,8 @@ public class Bus {
 	@Column(name = "id", nullable = false)
 	private Integer id;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "route_id", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "route_id")
 	private Route route;
 
 	private Integer maxSize;

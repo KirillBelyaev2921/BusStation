@@ -21,8 +21,8 @@ public class Route {
 	@OneToMany(mappedBy = "route")
 	private List<RouteStop> routeStops;
 
-	@OneToOne(mappedBy = "route")
-	private Bus bus;
+	@OneToMany(mappedBy = "route")
+	private List<Bus> buses;
 
 	public RouteStop getFirstRouteStop() {
 		return routeStops.getFirst();
