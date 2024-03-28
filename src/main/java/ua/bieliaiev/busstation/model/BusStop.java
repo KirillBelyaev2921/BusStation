@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "customer")
+@Table(name = "bus_stop")
 public class BusStop {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
