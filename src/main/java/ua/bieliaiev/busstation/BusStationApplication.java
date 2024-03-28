@@ -5,9 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ua.bieliaiev.busstation.configuration.DataSetter;
-import ua.bieliaiev.busstation.repostitories.RouteRepository;
-import ua.bieliaiev.busstation.repostitories.RouteStopRepository;
-import ua.bieliaiev.busstation.repostitories.StopRepository;
+import ua.bieliaiev.busstation.repostitories.*;
 
 @SpringBootApplication
 public class BusStationApplication {
@@ -18,9 +16,12 @@ public class BusStationApplication {
 
 	@Bean
 	public CommandLineRunner run(RouteStopRepository repository, RouteRepository routeRepository,
-								 StopRepository stopRepository) {
+								 StopRepository stopRepository, BusRepository busRepository,
+								 BusDepartureRepository busDepartureRepository,
+								 BusStopRepository busStopRepository) {
 		return args -> {
-			DataSetter dataSetter = new DataSetter(routeRepository, stopRepository, repository);
+			DataSetter dataSetter = new DataSetter(routeRepository, stopRepository, repository, busRepository,
+					busDepartureRepository, busStopRepository);
 			dataSetter.setAllData();
 		};
 	}

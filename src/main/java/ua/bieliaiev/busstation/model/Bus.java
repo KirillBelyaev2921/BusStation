@@ -20,8 +20,10 @@ public class Bus {
 	@JoinColumn(name = "route_id")
 	private Route route;
 
+	private String busName;
 	private Integer maxSize;
 
 	@OneToMany(mappedBy = "bus")
 	private List<BusDeparture> departures;
+
 }
