@@ -34,7 +34,7 @@ public class BusStationApplication {
 	private void addTestData(RouteStopRepository repository,
 							 RouteRepository routeRepository, StopRepository stopRepository) {
 		List<Stop> stops = IntStream.range(0, 28)
-				.mapToObj(i -> (i + 'A') + "")
+				.mapToObj(i -> (char)(i + 'A') + "")
 				.map(Stop::new)
 				.map(stopRepository::save)
 				.toList();
