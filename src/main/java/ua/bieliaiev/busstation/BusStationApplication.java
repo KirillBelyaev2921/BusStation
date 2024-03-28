@@ -4,15 +4,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import ua.bieliaiev.busstation.model.Route;
-import ua.bieliaiev.busstation.model.RouteStop;
-import ua.bieliaiev.busstation.model.Stop;
+import ua.bieliaiev.busstation.configuration.DataSetter;
 import ua.bieliaiev.busstation.repostitories.RouteRepository;
 import ua.bieliaiev.busstation.repostitories.RouteStopRepository;
 import ua.bieliaiev.busstation.repostitories.StopRepository;
-
-import java.util.List;
-import java.util.stream.IntStream;
 
 @SpringBootApplication
 public class BusStationApplication {
@@ -25,23 +20,9 @@ public class BusStationApplication {
 	public CommandLineRunner run(RouteStopRepository repository, RouteRepository routeRepository,
 								 StopRepository stopRepository) {
 		return args -> {
-			addTestData(repository, routeRepository, stopRepository);
+			DataSetter dataSetter = new DataSetter(routeRepository, stopRepository, repository);
+			dataSetter.setAllData();
 		};
-	}
-
-	private void addTestData(RouteStopRepository repository,
-							 RouteRepository routeRepository, StopRepository stopRepository) {
-		List<Stop> stops = IntStream.range(0, 26)
-				.mapToObj(i -> (char)(i + 'A') + "")
-				.map(Stop::new)
-				.map(stopRepository::save)
-				.toList();
-		Route route = new Route();
-		route.setRouteNumber("Route1");
-		route = routeRepository.save(route);
-		for (int i = 0; i < stops.size(); i++) {
-			repository.save(new RouteStop(route, stops.get(i), i));
-		}
 	}
 
 }
