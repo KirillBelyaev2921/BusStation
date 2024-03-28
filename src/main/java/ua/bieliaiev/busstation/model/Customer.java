@@ -17,15 +17,8 @@ public class Customer {
 	private Integer id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "bus_departure_id")
-	private BusDeparture busDeparture;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumns({
-			@JoinColumn(name = "route_id"),
-			@JoinColumn(name = "stop_id")
-	})
-	private RouteStop routeStop;
+	@JoinColumn(name = "bus_stop_id")
+	private BusStop busStop;
 
 	private String name;
 	private LocalDateTime ticketBuyDate;

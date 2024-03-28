@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalTime;
 import java.util.List;
 
 @Getter
@@ -22,7 +21,6 @@ public class Bus {
 	private Route route;
 
 	private Integer maxSize;
-	private LocalTime departureTime;
 
 	@OneToMany(mappedBy = "bus")
 	private List<BusDeparture> departures;

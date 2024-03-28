@@ -30,7 +30,7 @@ public class RouteStop {
 	private Integer stopIndex;
 
 	@OneToMany(mappedBy = "routeStop")
-	private List<Customer> customers;
+	private List<BusStop> busStops;
 
 	public RouteStop(Route route, Stop stop, Integer stopIndex) {
 		this.route = route;
