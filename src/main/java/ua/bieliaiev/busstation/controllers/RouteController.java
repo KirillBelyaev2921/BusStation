@@ -18,5 +18,10 @@ public class RouteController {
 		model.addAttribute("route", service.findRouteById(id));
 		return "/route";
 	}
+	@GetMapping("/routes")
+	public String getAllRoutes(Model model) {
+		model.addAttribute("routes", service.getAllRoutes());
+		return "/routes";
+	}
 
 }

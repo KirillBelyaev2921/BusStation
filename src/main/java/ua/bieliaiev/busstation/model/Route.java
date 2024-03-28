@@ -24,4 +24,10 @@ public class Route {
 	@OneToOne(mappedBy = "route")
 	private Bus bus;
 
+	public RouteStop getFirstRouteStop() {
+		return routeStops.getFirst();
+	}
+	public RouteStop getLastRouteStop() {
+		return routeStops.getLast();
+	}
 }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Routes</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.css}"/>
+</head>
+<body>
+<table class="table table-sm table-striped table-bordered table-hover">
+    <thead class="table-info">
+    <tr>
+        <th>Route number</th>
+        <th>Start station</th>
+        <th>Final destination</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${routes.isEmpty()}">
+        <td colspan="3"> No Routes</td>
+    </tr>
+    <tr th:each="route : ${routes}">
+        <td><span th:text="${route.getRouteNumber()}">Route</span></td>
+        <td><span th:text="${route.getFirstRouteStop().getStop().getStopName()}">Start</span></td>
+        <td><span th:text="${route.getLastRouteStop().getStop().getStopName()}">End</span></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

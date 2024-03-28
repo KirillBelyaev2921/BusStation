@@ -25,9 +25,7 @@ public class BusStationApplication {
 	public CommandLineRunner run(RouteStopRepository repository, RouteRepository routeRepository,
 								 StopRepository stopRepository) {
 		return args -> {
-			System.out.println("Hello world!");
 			addTestData(repository, routeRepository, stopRepository);
-			System.out.println(repository.findAll());
 		};
 	}
 
