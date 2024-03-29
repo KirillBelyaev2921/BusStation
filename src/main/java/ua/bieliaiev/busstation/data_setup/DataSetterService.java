@@ -1,67 +1,38 @@
-package ua.bieliaiev.busstation.services;
+package ua.bieliaiev.busstation.data_setup;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ua.bieliaiev.busstation.model.*;
-import ua.bieliaiev.busstation.repostitories.*;
+import ua.bieliaiev.busstation.repostitories.BusDepartureRepository;
+import ua.bieliaiev.busstation.repostitories.BusRepository;
+import ua.bieliaiev.busstation.repostitories.BusStopRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @AllArgsConstructor
 @Service
-public class DataSetter {
-	private final RouteRepository routeRepository;
-	private final StopRepository stopRepository;
-	private final RouteStopRepository routeStopRepository;
+public class DataSetterService {
+	private final RouteSetUp routeSetUp;
+	private final StopSetUp stopSetUp;
+	private final RouteStopSetUp routeStopSetUp;
 	private final BusRepository busRepository;
 	private final BusDepartureRepository busDepartureRepository;
 	private final BusStopRepository busStopRepository;
 
 	public void setTestData() {
-		Route route = setRoute("Route 1");
+		routeSetUp.createRoutes(10);
 
-		List<Stop> stops = setUpStops();
+		stopSetUp.createStandardStops();
 
-		List<RouteStop> routeStops = setUpRouteStops(stops, route);
+		routeStopSetUp.createRandomRouteStops(routeSetUp.getRoutes(), stopSetUp.getStation(), stopSetUp.getStops());
 
-		Bus bus = setUpBus(route);
+		Bus bus = setUpBus(routeSetUp.getRoutes().getFirst());
 
 		BusDeparture busDeparture = setUpBusDeparture(bus);
 
-		setUpBusStops(busDeparture, routeStops);
-	}
-
-
-	private Route setRoute(String routeName) {
-		Route route = new Route();
-		route.setRouteNumber(routeName);
-		route = routeRepository.save(route);
-		return route;
-	}
-
-	private List<Stop> setUpStops() {
-		Stop station = new Stop("Station");
-		station = stopRepository.save(station);
-		List<Stop> stops = IntStream.range(0, 26)
-				.mapToObj(i -> (char)(i + 'A') + "")
-				.map(Stop::new)
-				.map(stopRepository::save)
-				.collect(Collectors.toList());
-		stops.addFirst(station);
-		return stops;
-	}
-
-	private List<RouteStop> setUpRouteStops(List<Stop> stops, Route route) {
-		List<RouteStop> routeStops = new ArrayList<>();
-		for (int i = 0; i < stops.size(); i++) {
-			routeStops.add(
-					routeStopRepository.save(new RouteStop(route, stops.get(i), i)));
-		}
-		return routeStops;
+		setUpBusStops(busDeparture, routeStopSetUp.getRouteStops().get(routeSetUp.getRoutes().getFirst()));
 	}
 
 	private Bus setUpBus(Route route) {

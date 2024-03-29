@@ -4,7 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import ua.bieliaiev.busstation.services.DataSetter;
+import ua.bieliaiev.busstation.data_setup.DataSetterService;
 
 @SpringBootApplication
 public class BusStationApplication {
@@ -14,8 +14,8 @@ public class BusStationApplication {
 	}
 
 	@Bean
-	public CommandLineRunner run(DataSetter dataSetter) {
-		return args -> dataSetter.setTestData();
+	public CommandLineRunner run(DataSetterService dataSetterService) {
+		return args -> dataSetterService.setTestData();
 	}
 
 }
