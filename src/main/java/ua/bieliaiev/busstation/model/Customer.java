@@ -25,9 +25,4 @@ public class Customer {
 	private String name;
 	private LocalDateTime ticketBuyDate;
 
-	public Customer(String name, BusStop busStop, LocalDateTime now) {
-		this.name = name;
-		this.busStop = busStop;
-		this.ticketBuyDate = now;
-	}
 }

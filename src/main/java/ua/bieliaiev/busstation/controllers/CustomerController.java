@@ -16,7 +16,7 @@ public class CustomerController {
 
 	@PostMapping("/buy_ticket")
 	public String buyTicket(@RequestParam("busStopId") int id,
-						   Customer customer, Model model) {
+						   Customer customer) {
 		service.buyTicket(customer, id);
 		return "redirect:/";
 	}
