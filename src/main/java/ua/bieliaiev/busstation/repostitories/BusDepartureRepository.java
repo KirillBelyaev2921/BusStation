@@ -11,7 +11,8 @@ public interface BusDepartureRepository extends JpaRepository<BusDeparture, Inte
 
 	@Query("""
 			select b from BusDeparture b inner join b.busStops busStops
-			where b.isActive = true and busStops.routeStop.stop.id = ?1""")
+			where b.isActive = true and busStops.routeStop.stop.id = ?1
+			order by busStops.arrivalDate""")
 	List<BusDeparture> findByIsActiveTrueAndBusStops_RouteStop_Stop(Integer id);
 
 
