@@ -11,7 +11,9 @@
     <thead class="table-info">
     <tr>
         <th>Route Number</th>
+        <th>Bus Number</th>
         <th>Departure Time</th>
+        <th>Free Seats</th>
         <th>Expand</th>
     </tr>
     </thead>
@@ -19,9 +21,11 @@
     <tr th:if="${buses.isEmpty()}">
         <td colspan="3"> No Buses</td>
     </tr>
-    <tr th:each="bus : ${buses}">
+    <tr th:each="bus : ${buses}" th:if="${bus.getFreeSeatsNumber() != 0}">
         <td><span th:text="${bus.getBus().getRoute().getRouteNumber()}">Route Number</span></td>
+        <td><span th:text="${bus.getBus().getBusName()}">Bus Number</span></td>
         <td><span th:text="${bus.getDepartureDate()}">Departure Time</span></td>
+        <td><span th:text="${bus.getFreeSeatsNumber()}">Free Seats</span></td>
         <td>
             <a th:href="@{bus(id=${bus.id})}" class="btn btn-sm btn-info">
                 <i class="bi bi-arrow-right"></i>

@@ -29,4 +29,11 @@ public class BusDeparture {
 	public LocalDateTime getDepartureDate() {
 		return busStops.getFirst().getDepartureDate();
 	}
+
+	public int getFreeSeatsNumber() {
+		return bus.getMaxSize() -
+				busStops.stream()
+						.mapToInt(busStop -> busStop.getCustomers().size())
+						.sum();
+	}
 }
