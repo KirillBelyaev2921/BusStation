@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bus</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.css}"/>
+</head>
+<body>
+<form th:action="@{/buy_ticket(busStopId=${busStopId})}" th:object="${customer}" method="post">
+    <div class="form-group">
+        <label for="customerName">Enter your name</label>
+        <input type="text" class="form-control" id="customerName" th:field="*{name}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>

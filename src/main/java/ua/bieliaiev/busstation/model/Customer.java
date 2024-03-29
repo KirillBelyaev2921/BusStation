@@ -2,6 +2,7 @@ package ua.bieliaiev.busstation.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "customer")
 public class Customer {
 	@Id
@@ -23,5 +25,9 @@ public class Customer {
 	private String name;
 	private LocalDateTime ticketBuyDate;
 
-
+	public Customer(String name, BusStop busStop, LocalDateTime now) {
+		this.name = name;
+		this.busStop = busStop;
+		this.ticketBuyDate = now;
+	}
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Bus</title>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css}"/>
 </head>
 <body>
 <table class="table table-sm table-striped table-bordered table-hover">
@@ -13,6 +14,7 @@
         <th>Arrival</th>
         <th>Departure</th>
         <th>Price</th>
+        <th>Buy ticket</th>
     </tr>
     </thead>
     <tbody>
@@ -24,6 +26,11 @@
         <td><span th:text="${stop.getArrivalDate()}">Arrival</span></td>
         <td><span th:text="${stop.getDepartureDate()}">Departure</span></td>
         <td><span th:text="${stop.getPrice()}">Price</span></td>
+        <td th:if="${stop.getRouteStop().getStopIndex() != 0}">
+            <a th:href="@{buy_ticket(busStopId=${stop.id})}" class="btn btn-sm btn-info">
+                <i class="bi bi-cash"></i>
+            </a>
+        </td>
     </tr>
     </tbody>
 </table>
