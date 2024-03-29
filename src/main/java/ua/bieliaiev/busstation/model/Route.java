@@ -19,6 +19,7 @@ public class Route {
 	private String routeNumber;
 
 	@OneToMany(mappedBy = "route")
+	@OrderBy("stopIndex")
 	private List<RouteStop> routeStops;
 
 	@OneToMany(mappedBy = "route")

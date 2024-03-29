@@ -10,6 +10,7 @@
 <table class="table table-sm table-striped table-bordered table-hover">
     <thead class="table-info">
     <tr>
+        <th>Index</th>
         <th>Stop</th>
     </tr>
     </thead>
@@ -18,6 +19,7 @@
         <td colspan="3"> No Stops</td>
     </tr>
     <tr th:each="stop : ${route.getRouteStops()}">
+        <td><span th:text="${stop.getStopIndex()}">Index</span></td>
         <td><span th:text="${stop.getStop().getStopName()}">Stop</span></td>
     </tr>
     </tbody>
