@@ -20,4 +20,8 @@ public class BusService {
 	public List<BusDeparture> findAllByRouteId(int routeId) {
 		return busDepartureRepository.findByIsActiveTrueAndBus_Route_Id(routeId);
 	}
+
+	public List<BusDeparture> findAllByStopId(int stopId) {
+		return busDepartureRepository.findByIsActiveTrueAndBusStops_RouteStop_Stop(stopId);
+	}
 }

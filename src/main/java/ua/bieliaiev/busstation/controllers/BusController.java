@@ -18,8 +18,13 @@ public class BusController {
 		return "/buses";
 	}
 	@GetMapping("/bus")
-	public String getBusRoute(@RequestParam("id") int id, Model model) {
+	public String getBusRouteByRoute(@RequestParam("id") int id, Model model) {
 		model.addAttribute("busDeparture", service.findById(id));
 		return "/bus";
+	}
+	@GetMapping("/destination")
+	public String getBusRouteByDestination(@RequestParam("stopId") int id, Model model) {
+		model.addAttribute("buses", service.findAllByStopId(id));
+		return "/buses";
 	}
 }
